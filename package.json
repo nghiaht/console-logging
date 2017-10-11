@@ -1,0 +1,23 @@
+{
+  "name": "console-logging",
+  "version": "2017.0.3",
+  "description": "Usual console.log() can be switched on/off by setting logging level!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nghiaht/console-logging.git"
+  },
+  "keywords": [
+    "console.log",
+    "logging"
+  ],
+  "author": "nghiaht <masterlingyun@gmail.com> <nghia.ht@hotmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nghiaht/console-logging/issues"
+  },
+  "homepage": "https://github.com/nghiaht/console-logging#readme"
+}
