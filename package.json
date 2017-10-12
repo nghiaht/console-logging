@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/nghiaht/console-logging/issues"
   },
-  "homepage": "https://github.com/nghiaht/console-logging#readme"
+  "homepage": "https://github.com/nghiaht/console-logging#readme",
+  "devDependencies": {
+    "mocha": "^4.0.1"
+  }
 }

@@ -9,41 +9,78 @@ exports.LOGGING_LEVELS = LOGGING_LEVELS = {
 
 var loggingLevel = LOGGING_LEVELS.NOTSET;
 
-function log (message) {
-  console.log(message);
+function log (args) {
+  console.log.apply(null, Object.keys(args).map(function (key) {return args[key]}))
+}
+
+const Logging = {};
+Logging.log = log;
+
+function logWithLevel(level, message) {
+  if (loggingLevel <= level) Logging.log(message);
 }
 
 //region [ Logger ]
 const logger = {};
 
+/**
+ * Sets the logging level
+ * @param {@Link LOGGING_LEVELS} level
+ */
 logger.setLevel = function setLoggingLevel(level) {
   var intLevel = parseInt(level);
-  if (intLevel)
+  if (!isNaN(intLevel))
     loggingLevel = level;
   else throw new Error("Invalid logging level");
 };
 
+/**
+ * A universal log
+ * First arg is the desired logging level
+ * Additional arg(s) is the message(s)
+ * @param level
+ * @param message
+ */
+logger.log = function (level, message) {
+  logWithLevel(level, message);
+};
+
+/**
+ * @param {...*} message
+ */
 logger.debug = function logDebug(message) {
-  if (loggingLevel <= LOGGING_LEVELS.DEBUG) log(message)
+  this.log(LOGGING_LEVELS.DEBUG, arguments)
 };
 
+/**
+ * @param {...*} message
+ */
 logger.info = function logInfo(message) {
-  if (loggingLevel <= LOGGING_LEVELS.INFO) log(message)
+  this.log(LOGGING_LEVELS.INFO, arguments);
 };
 
+/**
+ * @param {...*} message
+ */
 logger.warning = function logWarning(message) {
-  if (loggingLevel <= LOGGING_LEVELS.WARNING) log(message)
+  this.log(LOGGING_LEVELS.WARNING, arguments);
 };
 
+/**
+ * @param {...*} message
+ */
 logger.error = function logError(message) {
-  if (loggingLevel <= LOGGING_LEVELS.ERROR) log(message)
+  this.log(LOGGING_LEVELS.ERROR, arguments);
 };
 
+/**
+ * @param {...*} message
+ */
 logger.critical = function logCritical(message) {
-  if (loggingLevel <= LOGGING_LEVELS.CRITICAL) log(message)
+  this.log(LOGGING_LEVELS.CRITICAL, arguments);
 };
 
 exports.logger = logger;
 //endregion
 
-
+exports.Logging = Logging;

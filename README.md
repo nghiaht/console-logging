@@ -23,5 +23,9 @@ logger.error("Transaction fail, transaction id 1")  // No output
 
 logger.setLevel(logging.LOGGING_LEVELS.ERROR)
 logger.error("Transaction fail, transaction id 1")  // Output 'Transaction fail, transaction id 1'
+
+// multi-args is supported
+logger.error("Hi", "I am", "an error")  // Output 'Hi I am an error'
+
 ```
 
