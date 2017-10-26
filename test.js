@@ -5,7 +5,7 @@ const logging = require("./index");
 const logger = logging.logger;
 
 const records = [];
-logging.Logging.log = function (args) {
+logging.Logging.log = function (level, args) {
   records.push(args);
 };
 

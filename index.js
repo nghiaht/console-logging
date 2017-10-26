@@ -1,3 +1,5 @@
+// Author: nghiaht - Page: https://github.com/nghiaht/console-logging
+
 exports.LOGGING_LEVELS = LOGGING_LEVELS = {
   NOTSET: 0,
   DEBUG: 10,
@@ -7,17 +9,24 @@ exports.LOGGING_LEVELS = LOGGING_LEVELS = {
   CRITICAL: 50
 };
 
+var INVERTED_LOGGING_LEVELS = {};
+Object.keys(LOGGING_LEVELS).map(function (levelName) {
+  INVERTED_LOGGING_LEVELS[LOGGING_LEVELS[levelName]] = levelName;
+});
+
+console.log(INVERTED_LOGGING_LEVELS);
+
 var loggingLevel = LOGGING_LEVELS.NOTSET;
 
-function log (args) {
-  console.log.apply(null, Object.keys(args).map(function (key) {return args[key]}))
+function log (level, args) {
+  console.log.apply(null, [INVERTED_LOGGING_LEVELS[level] + ":"].concat(Object.keys(args).map(function (key) {return args[key]})))
 }
 
 const Logging = {};
 Logging.log = log;
 
 function logWithLevel(level, message) {
-  if (loggingLevel <= level) Logging.log(message);
+  if (loggingLevel <= level) Logging.log(level, message);
 }
 
 //region [ Logger ]
@@ -28,6 +37,12 @@ const logger = {};
  * @param {@Link LOGGING_LEVELS} level
  */
 logger.setLevel = function setLoggingLevel(level) {
+  var firstTry = LOGGING_LEVELS[level];
+  if (!isNaN(firstTry)) {
+    loggingLevel = firstTry;
+    return
+  }
+
   var intLevel = parseInt(level);
   if (!isNaN(intLevel))
     loggingLevel = level;
@@ -84,3 +99,8 @@ exports.logger = logger;
 //endregion
 
 exports.Logging = Logging;
+
+
+if (require.main === module) {
+  logger.info("hihiii")
+}
