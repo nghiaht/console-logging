@@ -14,8 +14,6 @@ Object.keys(LOGGING_LEVELS).map(function (levelName) {
   INVERTED_LOGGING_LEVELS[LOGGING_LEVELS[levelName]] = levelName;
 });
 
-console.log(INVERTED_LOGGING_LEVELS);
-
 var loggingLevel = LOGGING_LEVELS.NOTSET;
 
 function log (level, args) {
