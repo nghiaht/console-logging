@@ -1,6 +1,6 @@
 {
   "name": "console-logging",
-  "version": "2017.0.5",
+  "version": "2017.0.6",
   "description": "Usual console.log() can be switched on/off by setting logging level!",
   "main": "index.js",
   "scripts": {
