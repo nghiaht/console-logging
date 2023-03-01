@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/nghiaht/console-logging#readme",
   "devDependencies": {
-    "mocha": "^4.0.1",
+    "mocha": "^10.2.0",
     "diff": ">=3.5.0"
   }
 }
